@@ -9,7 +9,13 @@ require("dotenv").config({ path: "./config.env" });
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://employeetaskfrontend.vercel.app",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(morgan("dev"));
 app.use(mongoSanitize());
 app.use(xss());
