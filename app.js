@@ -12,7 +12,8 @@ app.use(bodyParser.json());
 
 const dotenv = require("dotenv");
 dotenv.config({ path: `./config.env` });
-const DB = process.env.DATABASE_LOCAL;
+const DB = process.env.MONGO_URI;
+// mongoose.connect(process.env.MONGO_URI)
 
 mongoose
   .connect(DB, {
@@ -35,6 +36,11 @@ process.on("unhandledRejection", (err) => {
 app.use(cors());
 const PORT = 3004;
 
+app.get("/", (req, res) => {
+  res.send("Backend Working ✅");
+});
+
+
 
 const Employee=require('./routes/EmployeeRoutes')
 
@@ -55,12 +61,12 @@ app.use(mongoSanitize());
 app.use(xss()); 
 
 
-app.listen(PORT, (err) => {
-  if (!err) {
-    console.log("the port listion in 3004");
-  } else {
-    console.log("errprrr", err);
-  }
-});
+// app.listen(PORT, (err) => {
+//   if (!err) {
+//     console.log("the port listion in 3004");
+//   } else {
+//     console.log("errprrr", err);
+//   }
+// });
 
 
