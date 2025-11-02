@@ -32,7 +32,8 @@ exports.getEmployeeDetails=async(req,res)=>{
     {
         res.status(500).json({
             status:"fail",
-            message:"Unable To Fetch Details"
+            message:"Unable To Fetch Details",
+            err:err
         })
 
     }
